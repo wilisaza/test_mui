@@ -75,7 +75,7 @@ function MainBar() {
           >
             <MenuIcon />
           </IconButton>
-          {/*<Menu
+          <Menu
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -88,7 +88,7 @@ function MainBar() {
             <MenuItem onClick={handleClose}>Aseguradoras</MenuItem>
             <MenuItem onClick={handleModal}>Terceros</MenuItem>
             <MenuItem onClick={handleClose}>Opciones</MenuItem>
-          </Menu>*/}
+          </Menu>
           Prueba
         </Toolbar>
       </AppBar>
