@@ -30,11 +30,12 @@ function Form({ formStruct }) {
   return (
     <Container>
       <Box
+        key="mainBox"
         sx={{
           //margin: "0 auto",
-          height: wHeight * factorDisplay + 60 + "px",
+          //height: wHeight * factorDisplay + 60 + "px",
           //width: wWidth * factorDisplay + "px",
-          //height: "100%",
+          height: "80vh",
           backgroundColor: "#e3dcdc",
           border: "1px solid #565555",
           borderRadius: 2,
@@ -51,10 +52,12 @@ function Form({ formStruct }) {
         </Toolbar>
     </AppBar>*/}
         <Box
+          id="toolBox"
           sx={{
             display: "flex",
-            alignItems: "center",
+            //alignItems: "center",
             width: "fit-content",
+
             border: (theme) => `1px solid ${theme.palette.divider}`,
             borderRadius: 2,
             bgcolor: "#c1c6ef",
@@ -106,12 +109,17 @@ function Form({ formStruct }) {
           </Tooltip>
         </Box>
         <Box
+          id="formBox"
           sx={{
             margin: "0 auto",
             marginTop: "5px",
-            height: wHeight * factorSize + 60 + "px",
+            //height: wHeight * factorSize + 60 + "px",
+            height: "auto",
+            //overflow: "auto",
+            //maxHeight: wHeight * factorSize + 60 + "px",
+            minHeight: wHeight * factorSize + 60 + "px",
             width: wWidth * factorSize + "px",
-            backgroundColor: "#adcbf9",
+            backgroundColor: "#dde1e7",
             border: "1px solid #565555",
             borderRadius: 1,
           }}
@@ -128,10 +136,20 @@ function Form({ formStruct }) {
             </Toolbar>
         </AppBar>*/}
           <Typography variant="caption">
-            <Box sx={{ backgroundColor: "#1976d2", color: "#ffffff" }}>
+            <Box
+              id="titleBox"
+              sx={{
+                backgroundColor: "#1976d2",
+                color: "#ffffff",
+                marginBottom: "10px",
+                paddingLeft: "5px",
+              }}
+            >
               {formStruct.Window["-Title"]}
             </Box>
-            <FormBlock />
+            <Box id="blockBox" padding="5px">
+              <FormBlock dataBlock={formStruct.Block} />
+            </Box>
           </Typography>
         </Box>
       </Box>
