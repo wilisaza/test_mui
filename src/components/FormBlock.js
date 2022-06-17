@@ -1,9 +1,6 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
 
 import { keyExists } from "../functions/arrayFunctions";
-
-const numCols = 12;
 
 function FormBlock({ dataBlock }) {
   //if(dataBlock.isArray()) //Se necesita evaluar si se envía un solo bloque o un array de ellos

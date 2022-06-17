@@ -19,6 +19,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 
 import FormBlock from "./FormBlock";
+import FormGrid from "./FormGrid";
 
 let factorSize = 1;
 let factorDisplay = 1.4;
@@ -148,7 +149,8 @@ function Form({ formStruct }) {
               {formStruct.Window["-Title"]}
             </Box>
             <Box id="blockBox" padding="5px">
-              <FormBlock dataBlock={formStruct.Block} />
+              {/*<FormBlock dataBlock={formStruct.Block} />*/}
+              <FormGrid dataBlock={formStruct.Block} />
             </Box>
           </Typography>
         </Box>
