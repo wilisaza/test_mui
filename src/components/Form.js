@@ -119,7 +119,7 @@ function Form({ formStruct }) {
             //overflow: "auto",
             //maxHeight: wHeight * factorSize + 60 + "px",
             minHeight: wHeight * factorSize + 60 + "px",
-            width: wWidth * factorSize + "px",
+            width: wWidth * factorSize + 30 + "px",
             backgroundColor: "#dde1e7",
             border: "1px solid #565555",
             borderRadius: 1,

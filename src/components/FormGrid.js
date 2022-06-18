@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import DataGrid from "react-data-grid";
+import DataGrid, {
+  SelectColumn,
+  TextEditor,
+  SelectCellFormatter,
+} from "react-data-grid";
 
 import { keyExists } from "../functions/arrayFunctions";
 
@@ -16,27 +20,30 @@ const rows = [
 function FormGrid({ dataBlock }) {
   const [columns, setColumns] = useState([]);
 
-  const fillColumns = () => {
+  const fillColumns = (arrayCols) => {
     let columns = [];
     let tempColumn = {};
     console.log("DataBlock", dataBlock);
-    if (dataBlock.Item.isArray()) {
+    if (Array.isArray(dataBlock.Item)) {
       for (let item in dataBlock.Item) {
         if (keyExists(dataBlock.Item[item], "-CanvasName")) {
           tempColumn = {};
           tempColumn.key = dataBlock.Item[item]["-ColumnName"];
           tempColumn.name = dataBlock.Item[item]["-Prompt"];
+          tempColumn.width = parseInt(dataBlock.Item[item]["-Width"]);
+          tempColumn.resizable = false;
+          tempColumn.editor = TextEditor;
           columns.push(tempColumn);
           console.log("COLS", columns);
         }
       }
-      if (columns.length > 0) return columns;
-      else return [];
+      if (columns.length > 0) arrayCols(columns);
+      else arrayCols([]);
     }
   };
 
   const cargaCols = () => {
-    setColumns(fillColumns);
+    fillColumns(setColumns);
   };
 
   useEffect(() => {
