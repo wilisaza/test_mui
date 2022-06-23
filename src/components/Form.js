@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { styled, useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -21,10 +21,30 @@ import Divider from "@mui/material/Divider";
 import FormBody from "./FormBody";
 import FormGrid from "./FormGrid";
 
+import orclFunctions from "../functions/orclApiFunctions";
+import jsFunctions from "../functions/jsFunctions";
+
 let factorSize = 1;
 let factorDisplay = 1.4;
 
 function Form({ formStruct }) {
+  const [query, setQuery] = useState(false);
+  const [formData, setFormData] = useState([]);
+
+  /*const peticionGet = () => {
+    //(urlObj, "GET", objetoDb, filtroObj, setFormData)
+    orclFunctions.fetchApi(
+      formStruct.Connection.bk_url,
+      "GET",
+      "tipo_entidad",
+      "nit_compania=891480014",
+      setFormData
+    );
+  };
+
+  const handleClick = () => {
+    peticionGet();
+  };*/
   //console.log(formStruct);
   let wHeight = parseInt(formStruct.Window["-Height"]);
   let wWidth = parseInt(formStruct.Window["-Width"]);
@@ -149,8 +169,7 @@ function Form({ formStruct }) {
               {formStruct.Window["-Title"]}
             </Box>
             <Box id="blockBox" padding="5px">
-              <FormBody dataBlock={formStruct.Block} />
-              {/*<FormGrid dataBlock={formStruct.Block} />*/}
+              <FormBody dataBlock={formStruct.Block} data={formData} />
             </Box>
           </Typography>
         </Box>

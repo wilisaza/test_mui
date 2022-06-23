@@ -15,7 +15,35 @@ function Field({ item, index }) {
             }}
           />
         );
-        break;
+
+      case "List Item":
+        return (
+          <select
+            key={item["-Name"] + "-" + index}
+            id={item["-Name"] + "-" + index}
+            name={item["-Name"] + "-" + index}
+            style={{
+              width: parseInt(item["-Width"]),
+            }}
+          >
+            {item.ListItemElement.map((opt) => (
+              <option value={opt["-Value"]}>{opt["-Name"]}</option>
+            ))}
+          </select>
+        );
+
+      case "Display Item":
+        return (
+          <input
+            key={item["-Name"] + "-" + index}
+            id={item["-Name"] + "-" + index}
+            type="text"
+            style={{
+              width: parseInt(item["-Width"]),
+              //height: parseInt(item["-Height"]),
+            }}
+          />
+        );
 
       default:
         break;

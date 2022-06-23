@@ -4,7 +4,7 @@ import Record from "./Record";
 
 import { keyExists } from "../functions/arrayFunctions";
 
-function FormBody({ dataBlock }) {
+function FormBody({ dataBlock, data }) {
   //if(dataBlock.isArray()) //Se necesita evaluar si se envía un solo bloque o un array de ellos
 
   const BlockDef = () => {

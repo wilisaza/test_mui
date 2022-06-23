@@ -266,6 +266,13 @@ const form = {
     "-Height": "280",
     "-self-closing": "true",
   },
+  Connection: {
+    bk_url: "http://docker.siifweb.com:5020/",
+    db_user: "siif",
+    db_password: "siif",
+    db_host: "dbrep.siifweb.com",
+    db_sid: "praeroflo",
+  },
 };
 
 export default function MainTest() {
