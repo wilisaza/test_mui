@@ -1,6 +1,6 @@
 import React from "react";
 
-function Field({ item, index }) {
+function Field({ item, index, fieldValue }) {
   const FieldType = () => {
     switch (item["-ItemType"]) {
       case "Text Item":
@@ -9,6 +9,7 @@ function Field({ item, index }) {
             key={item["-Name"] + "-" + index}
             id={item["-Name"] + "-" + index}
             type="text"
+            value={fieldValue}
             style={{
               width: parseInt(item["-Width"]),
               //height: parseInt(item["-Height"]),
@@ -26,9 +27,15 @@ function Field({ item, index }) {
               width: parseInt(item["-Width"]),
             }}
           >
-            {item.ListItemElement.map((opt) => (
-              <option value={opt["-Value"]}>{opt["-Name"]}</option>
-            ))}
+            {item.ListItemElement.map((opt) =>
+              opt["-Value"] === fieldValue ? (
+                <option value={opt["-Value"]} selected>
+                  {opt["-Name"]}
+                </option>
+              ) : (
+                <option value={opt["-Value"]}>{opt["-Name"]}</option>
+              )
+            )}
           </select>
         );
 
@@ -38,6 +45,7 @@ function Field({ item, index }) {
             key={item["-Name"] + "-" + index}
             id={item["-Name"] + "-" + index}
             type="text"
+            value={fieldValue}
             style={{
               width: parseInt(item["-Width"]),
               //height: parseInt(item["-Height"]),
