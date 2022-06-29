@@ -66,6 +66,7 @@ function FormBody({ formStruct, query, setQuery }) {
         ) {
           rows.push(
             <Record
+              key={dataBlock["-Name"] + i}
               dataBlock={dataBlock}
               index={i}
               displayLabel={false}

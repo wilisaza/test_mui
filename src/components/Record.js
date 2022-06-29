@@ -1,33 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Field from "./Field";
 
 import { keyExists } from "../functions/arrayFunctions";
 
 function Record({ dataBlock, index, displayLabel, recordValue }) {
+  const [elementoSeleccionado, setElementoSeleccionado] = useState(recordValue);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setElementoSeleccionado((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log("Elemento", elementoSeleccionado);
+  };
+
   const Rep = () => {
-    //console.log("RecordValue", recordValue);
-    /* let rows = displayLabel ? (
-      <></>
-    ) : (
-      <tr>
-        {dataBlock &&
-          dataBlock.Item.map((item) =>
-            keyExists(item, "-CanvasName") ? (
-              <td>
-                <Field
-                  item={item}
-                  index={index}
-                  fieldValue={recordValue[item["-Name"].toLowerCase()]}
-                />
-              </td>
-            ) : (
-              <></>
-            )
-          )}
-      </tr>
-    );
-    return rows;*/
     let i;
     let rows = [];
     let { Item } = dataBlock;
@@ -41,13 +30,15 @@ function Record({ dataBlock, index, displayLabel, recordValue }) {
           rows.push(
             <td>
               <Field
+                nameField={item["-Name"].toLowerCase()}
                 item={item}
                 index={index}
-                fieldValue={recordValue[item["-Name"].toLowerCase()]}
+                valueField={elementoSeleccionado[item["-Name"].toLowerCase()]}
+                onChangeField={handleChange}
               />
             </td>
           );
-        }
+        } /*
         if (keyExists(item, "Trigger")) {
           //El campo tiene Triggers
           let trigger = item.Trigger;
@@ -58,13 +49,13 @@ function Record({ dataBlock, index, displayLabel, recordValue }) {
                 let triggerText = trigger["-TriggerText"];
                 triggerText = triggerText.replace(/&#10;/g, "\n");
                 triggerText = triggerText.replace(/&#x9;/g, "\t");
-                console.log(triggerText);
+                //console.log(triggerText);
                 break;
               default:
                 break;
             }
           }
-        }
+        }*/
       }
       return <tr>{rows}</tr>;
     }
