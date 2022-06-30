@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-function Field({ nameField, item, index, valueField, onChangeField }) {
+function Field({
+  nameField,
+  item,
+  indexRecord,
+  valueField,
+  onChangeField,
+  focused = false,
+  onFocusField,
+}) {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (focused) {
+      inputRef.current.focus();
+    }
+  });
+
   const FieldType = () => {
     switch (item["-ItemType"]) {
       case "Text Item":
         return (
           <input
             name={nameField}
-            key={item["-Name"] + "-" + index}
-            id={item["-Name"] + "-" + index}
+            key={item["-Name"] + "-" + indexRecord}
+            id={item["-Name"] + "-" + indexRecord}
             type="text"
             value={valueField}
             onChange={onChangeField}
+            ref={inputRef}
+            onFocus={onFocusField}
             style={{
               width: parseInt(item["-Width"]),
               //height: parseInt(item["-Height"]),
@@ -23,9 +41,11 @@ function Field({ nameField, item, index, valueField, onChangeField }) {
         return (
           <select
             name={nameField}
-            key={item["-Name"] + "-" + index}
-            id={item["-Name"] + "-" + index}
+            key={item["-Name"] + "-" + indexRecord}
+            id={item["-Name"] + "-" + indexRecord}
             onChange={onChangeField}
+            ref={inputRef}
+            onFocus={onFocusField}
             style={{
               width: parseInt(item["-Width"]),
             }}
@@ -46,8 +66,8 @@ function Field({ nameField, item, index, valueField, onChangeField }) {
         return (
           <input
             name={nameField}
-            key={item["-Name"] + "-" + index}
-            id={item["-Name"] + "-" + index}
+            key={item["-Name"] + "-" + indexRecord}
+            id={item["-Name"] + "-" + indexRecord}
             type="text"
             value={valueField}
             style={{

@@ -68,7 +68,7 @@ function FormBody({ formStruct, query, setQuery }) {
             <Record
               key={dataBlock["-Name"] + i}
               dataBlock={dataBlock}
-              index={i}
+              indexRecord={i}
               displayLabel={false}
               recordValue={extractData(i)}
             />

@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Field from "./Field";
 
 import { keyExists } from "../functions/arrayFunctions";
 
-function Record({ dataBlock, index, displayLabel, recordValue }) {
+function Record({ dataBlock, indexRecord, displayLabel, recordValue }) {
   const [elementoSeleccionado, setElementoSeleccionado] = useState(recordValue);
+  const [focused, setFocused] = useState(
+    Array(dataBlock.Item.length).fill(false)
+  );
+
+  useEffect(() => {
+    setFocus(1);
+    console.log("Focused", focused);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +24,14 @@ function Record({ dataBlock, index, displayLabel, recordValue }) {
     console.log("Elemento", elementoSeleccionado);
   };
 
+  const setFocus = (index) => {
+    setFocused([
+      ...Array(index).fill(false),
+      true,
+      ...Array(dataBlock.Item.length - index - 1).fill(false),
+    ]);
+  };
+
   const Rep = () => {
     let i;
     let rows = [];
@@ -24,7 +40,7 @@ function Record({ dataBlock, index, displayLabel, recordValue }) {
     if (displayLabel) {
       return <></>;
     } else {
-      for (i = 0; i < Item.length; i++) {
+      for (i = 0; i < focused.length; i++) {
         item = Item[i];
         if (keyExists(item, "-CanvasName")) {
           rows.push(
@@ -32,9 +48,11 @@ function Record({ dataBlock, index, displayLabel, recordValue }) {
               <Field
                 nameField={item["-Name"].toLowerCase()}
                 item={item}
-                index={index}
+                indexRecord={indexRecord}
                 valueField={elementoSeleccionado[item["-Name"].toLowerCase()]}
                 onChangeField={handleChange}
+                focused={focused[i]}
+                onFocusField={() => setFocus(i)}
               />
             </td>
           );
