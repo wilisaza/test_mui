@@ -25,11 +25,13 @@ function Record({ dataBlock, indexRecord, displayLabel, recordValue }) {
   };
 
   const setFocus = (index) => {
-    setFocused([
-      ...Array(index).fill(false),
-      true,
-      ...Array(dataBlock.Item.length - index - 1).fill(false),
-    ]);
+    if (index < 0) {
+      setFocused([
+        ...Array(index).fill(false),
+        true,
+        ...Array(dataBlock.Item.length - index - 1).fill(false),
+      ]);
+    }
   };
 
   const Rep = () => {
